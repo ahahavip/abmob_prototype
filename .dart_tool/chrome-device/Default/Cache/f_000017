@@ -1,0 +1,1756 @@
+define(['dart_sdk', 'packages/google_mobile_ads/src/request_configuration.dart', 'packages/flutter/src/services/system_channels.dart', 'packages/flutter/src/foundation/print.dart', 'packages/flutter/src/foundation/debug.dart', 'packages/flutter/src/foundation/_platform_web.dart', 'packages/flutter/src/foundation/serialization.dart', 'packages/flutter/src/foundation/collections.dart', 'packages/flutter/src/widgets/widget_span.dart', 'packages/flutter/src/widgets/platform_view.dart', 'packages/flutter/src/services/platform_views.dart', 'packages/flutter/src/foundation/basic_types.dart', 'packages/flutter/src/gestures/recognizer.dart', 'packages/flutter/src/rendering/platform_view.dart'], (function load__packages__google_mobile_ads__src__mobile_ads_dart(dart_sdk, packages__google_mobile_ads__src__request_configuration$46dart, packages__flutter__src__services__system_channels$46dart, packages__flutter__src__foundation__print$46dart, packages__flutter__src__foundation__debug$46dart, packages__flutter__src__foundation___platform_web$46dart, packages__flutter__src__foundation__serialization$46dart, packages__flutter__src__foundation__collections$46dart, packages__flutter__src__widgets__widget_span$46dart, packages__flutter__src__widgets__platform_view$46dart, packages__flutter__src__services__platform_views$46dart, packages__flutter__src__foundation__basic_types$46dart, packages__flutter__src__gestures__recognizer$46dart, packages__flutter__src__rendering__platform_view$46dart) {
+  'use strict';
+  const core = dart_sdk.core;
+  const async = dart_sdk.async;
+  const collection = dart_sdk.collection;
+  const _js_helper = dart_sdk._js_helper;
+  const _internal = dart_sdk._internal;
+  const _interceptors = dart_sdk._interceptors;
+  const ui = dart_sdk.ui;
+  const io = dart_sdk.io;
+  const dart = dart_sdk.dart;
+  const dartx = dart_sdk.dartx;
+  const request_configuration = packages__google_mobile_ads__src__request_configuration$46dart.src__request_configuration;
+  const platform_channel = packages__flutter__src__services__system_channels$46dart.src__services__platform_channel;
+  const message_codecs = packages__flutter__src__services__system_channels$46dart.src__services__message_codecs;
+  const message_codec = packages__flutter__src__services__system_channels$46dart.src__services__message_codec;
+  const print = packages__flutter__src__foundation__print$46dart.src__foundation__print;
+  const diagnostics = packages__flutter__src__foundation__debug$46dart.src__foundation__diagnostics;
+  const assertions = packages__flutter__src__foundation__debug$46dart.src__foundation__assertions;
+  const platform = packages__flutter__src__foundation___platform_web$46dart.src__foundation__platform;
+  const serialization = packages__flutter__src__foundation__serialization$46dart.src__foundation__serialization;
+  const collections = packages__flutter__src__foundation__collections$46dart.src__foundation__collections;
+  const media_query = packages__flutter__src__widgets__widget_span$46dart.src__widgets__media_query;
+  const framework = packages__flutter__src__widgets__widget_span$46dart.src__widgets__framework;
+  const widget_inspector = packages__flutter__src__widgets__widget_span$46dart.src__widgets__widget_inspector;
+  const platform_view = packages__flutter__src__widgets__platform_view$46dart.src__widgets__platform_view;
+  const platform_views = packages__flutter__src__services__platform_views$46dart.src__services__platform_views;
+  const basic_types = packages__flutter__src__foundation__basic_types$46dart.src__foundation__basic_types;
+  const recognizer = packages__flutter__src__gestures__recognizer$46dart.src__gestures__recognizer;
+  const platform_view$ = packages__flutter__src__rendering__platform_view$46dart.src__rendering__platform_view;
+  var mobile_ads = Object.create(dart.library);
+  var ad_instance_manager = Object.create(dart.library);
+  var ad_containers = Object.create(dart.library);
+  var $_get = dartx._get;
+  var $map = dartx.map;
+  var $containsKey = dartx.containsKey;
+  var $_set = dartx._set;
+  var $clear = dartx.clear;
+  var $keys = dartx.keys;
+  var $remove = dartx.remove;
+  var $runtimeType = dartx.runtimeType;
+  var $toString = dartx.toString;
+  var $isNotEmpty = dartx.isNotEmpty;
+  dart._checkModuleNullSafetyMode(true);
+  var T = {
+    MapOfString$AdapterStatus: () => (T.MapOfString$AdapterStatus = dart.constFn(core.Map$(core.String, mobile_ads.AdapterStatus)))(),
+    _BiMapOfint$Ad: () => (T._BiMapOfint$Ad = dart.constFn(ad_instance_manager._BiMap$(core.int, ad_containers.Ad)))(),
+    LinkedHashSetOfAd: () => (T.LinkedHashSetOfAd = dart.constFn(collection.LinkedHashSet$(ad_containers.Ad)))(),
+    LinkedHashSetOfint: () => (T.LinkedHashSetOfint = dart.constFn(collection.LinkedHashSet$(core.int)))(),
+    FutureOfNull: () => (T.FutureOfNull = dart.constFn(async.Future$(core.Null)))(),
+    MethodCallToFutureOfNull: () => (T.MethodCallToFutureOfNull = dart.constFn(dart.fnType(T.FutureOfNull(), [message_codec.MethodCall])))(),
+    FutureOfvoid: () => (T.FutureOfvoid = dart.constFn(async.Future$(dart.void)))(),
+    ListOfString: () => (T.ListOfString = dart.constFn(core.List$(core.String)))(),
+    ListNOfString: () => (T.ListNOfString = dart.constFn(dart.nullable(T.ListOfString())))(),
+    StringN: () => (T.StringN = dart.constFn(dart.nullable(core.String)))(),
+    boolN: () => (T.boolN = dart.constFn(dart.nullable(core.bool)))(),
+    MapOfString$String: () => (T.MapOfString$String = dart.constFn(core.Map$(core.String, core.String)))(),
+    MapNOfString$String: () => (T.MapNOfString$String = dart.constFn(dart.nullable(T.MapOfString$String())))(),
+    MapN: () => (T.MapN = dart.constFn(dart.nullable(core.Map)))(),
+    JSArrayOfDiagnosticsNode: () => (T.JSArrayOfDiagnosticsNode = dart.constFn(_interceptors.JSArray$(diagnostics.DiagnosticsNode)))(),
+    FactoryOfOneSequenceGestureRecognizer: () => (T.FactoryOfOneSequenceGestureRecognizer = dart.constFn(basic_types.Factory$(recognizer.OneSequenceGestureRecognizer)))(),
+    BuildContextAndPlatformViewControllerToAndroidViewSurface: () => (T.BuildContextAndPlatformViewControllerToAndroidViewSurface = dart.constFn(dart.fnType(platform_view.AndroidViewSurface, [framework.BuildContext, platform_views.PlatformViewController])))(),
+    PlatformViewCreationParamsToSurfaceAndroidViewController: () => (T.PlatformViewCreationParamsToSurfaceAndroidViewController = dart.constFn(dart.fnType(platform_views.SurfaceAndroidViewController, [platform_view.PlatformViewCreationParams])))()
+  };
+  const CT = Object.create({
+    _: () => (C, CT)
+  });
+  dart.defineLazy(CT, {
+    get C0() {
+      return C[0] = dart.const({
+        __proto__: mobile_ads.AdapterInitializationState.prototype,
+        [_name$]: "AdapterInitializationState.notReady",
+        index: 0
+      });
+    },
+    get C1() {
+      return C[1] = dart.const({
+        __proto__: mobile_ads.AdapterInitializationState.prototype,
+        [_name$]: "AdapterInitializationState.ready",
+        index: 1
+      });
+    },
+    get C2() {
+      return C[2] = dart.constList([C[0] || CT.C0, C[1] || CT.C1], mobile_ads.AdapterInitializationState);
+    },
+    get C3() {
+      return C[3] = dart.const({
+        __proto__: ad_containers.AdSize.prototype,
+        [width$]: 320,
+        [height$]: 50
+      });
+    },
+    get C4() {
+      return C[4] = dart.const({
+        __proto__: ad_containers.AdSize.prototype,
+        [width$]: 320,
+        [height$]: 100
+      });
+    },
+    get C5() {
+      return C[5] = dart.const({
+        __proto__: ad_containers.AdSize.prototype,
+        [width$]: 300,
+        [height$]: 250
+      });
+    },
+    get C6() {
+      return C[6] = dart.const({
+        __proto__: ad_containers.AdSize.prototype,
+        [width$]: 468,
+        [height$]: 60
+      });
+    },
+    get C7() {
+      return C[7] = dart.const({
+        __proto__: ad_containers.AdSize.prototype,
+        [width$]: 728,
+        [height$]: 90
+      });
+    },
+    get C8() {
+      return C[8] = dart.constSet(T.FactoryOfOneSequenceGestureRecognizer(), []);
+    },
+    get C11() {
+      return C[11] = dart.const({
+        __proto__: widget_inspector._Location.prototype,
+        [_Location_parameterLocations]: null,
+        [_Location_name]: "controller",
+        [_Location_column]: 13,
+        [_Location_line]: 394,
+        [_Location_file]: null
+      });
+    },
+    get C12() {
+      return C[12] = dart.const({
+        __proto__: widget_inspector._Location.prototype,
+        [_Location_parameterLocations]: null,
+        [_Location_name]: "gestureRecognizers",
+        [_Location_column]: 13,
+        [_Location_line]: 395,
+        [_Location_file]: null
+      });
+    },
+    get C13() {
+      return C[13] = dart.const({
+        __proto__: widget_inspector._Location.prototype,
+        [_Location_parameterLocations]: null,
+        [_Location_name]: "hitTestBehavior",
+        [_Location_column]: 13,
+        [_Location_line]: 396,
+        [_Location_file]: null
+      });
+    },
+    get C10() {
+      return C[10] = dart.constList([C[11] || CT.C11, C[12] || CT.C12, C[13] || CT.C13], widget_inspector._Location);
+    },
+    get C9() {
+      return C[9] = dart.const({
+        __proto__: widget_inspector._Location.prototype,
+        [_Location_parameterLocations]: C[10] || CT.C10,
+        [_Location_name]: null,
+        [_Location_column]: 18,
+        [_Location_line]: 393,
+        [_Location_file]: "file:///D:/fluter/flutter/.pub-cache/hosted/pub.dartlang.org/google_mobile_ads-0.12.1+1/lib/src/ad_containers.dart"
+      });
+    },
+    get C16() {
+      return C[16] = dart.const({
+        __proto__: widget_inspector._Location.prototype,
+        [_Location_parameterLocations]: null,
+        [_Location_name]: "viewType",
+        [_Location_column]: 9,
+        [_Location_line]: 390,
+        [_Location_file]: null
+      });
+    },
+    get C17() {
+      return C[17] = dart.const({
+        __proto__: widget_inspector._Location.prototype,
+        [_Location_parameterLocations]: null,
+        [_Location_name]: "surfaceFactory",
+        [_Location_column]: 9,
+        [_Location_line]: 391,
+        [_Location_file]: null
+      });
+    },
+    get C18() {
+      return C[18] = dart.const({
+        __proto__: widget_inspector._Location.prototype,
+        [_Location_parameterLocations]: null,
+        [_Location_name]: "onCreatePlatformView",
+        [_Location_column]: 9,
+        [_Location_line]: 399,
+        [_Location_file]: null
+      });
+    },
+    get C15() {
+      return C[15] = dart.constList([C[16] || CT.C16, C[17] || CT.C17, C[18] || CT.C18], widget_inspector._Location);
+    },
+    get C14() {
+      return C[14] = dart.const({
+        __proto__: widget_inspector._Location.prototype,
+        [_Location_parameterLocations]: C[15] || CT.C15,
+        [_Location_name]: null,
+        [_Location_column]: 14,
+        [_Location_line]: 389,
+        [_Location_file]: "file:///D:/fluter/flutter/.pub-cache/hosted/pub.dartlang.org/google_mobile_ads-0.12.1+1/lib/src/ad_containers.dart"
+      });
+    },
+    get C21() {
+      return C[21] = dart.const({
+        __proto__: widget_inspector._Location.prototype,
+        [_Location_parameterLocations]: null,
+        [_Location_name]: "viewType",
+        [_Location_column]: 7,
+        [_Location_line]: 414,
+        [_Location_file]: null
+      });
+    },
+    get C22() {
+      return C[22] = dart.const({
+        __proto__: widget_inspector._Location.prototype,
+        [_Location_parameterLocations]: null,
+        [_Location_name]: "creationParams",
+        [_Location_column]: 7,
+        [_Location_line]: 415,
+        [_Location_file]: null
+      });
+    },
+    get C23() {
+      return C[23] = dart.const({
+        __proto__: widget_inspector._Location.prototype,
+        [_Location_parameterLocations]: null,
+        [_Location_name]: "creationParamsCodec",
+        [_Location_column]: 7,
+        [_Location_line]: 416,
+        [_Location_file]: null
+      });
+    },
+    get C20() {
+      return C[20] = dart.constList([C[21] || CT.C21, C[22] || CT.C22, C[23] || CT.C23], widget_inspector._Location);
+    },
+    get C19() {
+      return C[19] = dart.const({
+        __proto__: widget_inspector._Location.prototype,
+        [_Location_parameterLocations]: C[20] || CT.C20,
+        [_Location_name]: null,
+        [_Location_column]: 12,
+        [_Location_line]: 413,
+        [_Location_file]: "file:///D:/fluter/flutter/.pub-cache/hosted/pub.dartlang.org/google_mobile_ads-0.12.1+1/lib/src/ad_containers.dart"
+      });
+    }
+  }, false);
+  var C = Array(24).fill(void 0);
+  var I = [
+    "package:google_mobile_ads/src/mobile_ads.dart",
+    "file:///D:/fluter/flutter/.pub-cache/hosted/pub.dartlang.org/google_mobile_ads-0.12.1+1/lib/src/ad_instance_manager.dart",
+    "package:google_mobile_ads/src/ad_instance_manager.dart",
+    "package:google_mobile_ads/src/ad_containers.dart",
+    "file:///D:/fluter/flutter/.pub-cache/hosted/pub.dartlang.org/google_mobile_ads-0.12.1+1/lib/src/ad_containers.dart"
+  ];
+  var _name$ = dart.privateName(mobile_ads, "_name");
+  mobile_ads.AdapterInitializationState = class AdapterInitializationState extends core.Object {
+    toString() {
+      return this[_name$];
+    }
+  };
+  (mobile_ads.AdapterInitializationState.new = function(index, _name) {
+    this.index = index;
+    this[_name$] = _name;
+    ;
+  }).prototype = mobile_ads.AdapterInitializationState.prototype;
+  dart.addTypeTests(mobile_ads.AdapterInitializationState);
+  dart.addTypeCaches(mobile_ads.AdapterInitializationState);
+  dart.setLibraryUri(mobile_ads.AdapterInitializationState, I[0]);
+  dart.setFieldSignature(mobile_ads.AdapterInitializationState, () => ({
+    __proto__: dart.getFields(mobile_ads.AdapterInitializationState.__proto__),
+    index: dart.finalFieldType(core.int),
+    [_name$]: dart.finalFieldType(core.String)
+  }));
+  dart.defineExtensionMethods(mobile_ads.AdapterInitializationState, ['toString']);
+  mobile_ads.AdapterInitializationState.notReady = C[0] || CT.C0;
+  mobile_ads.AdapterInitializationState.ready = C[1] || CT.C1;
+  mobile_ads.AdapterInitializationState.values = C[2] || CT.C2;
+  var _init = dart.privateName(mobile_ads, "_init");
+  mobile_ads.MobileAds = class MobileAds extends core.Object {
+    static get instance() {
+      return mobile_ads.MobileAds._instance;
+    }
+    initialize() {
+      return async.async(mobile_ads.InitializationStatus, function* initialize() {
+        return dart.nullCheck(yield ad_instance_manager.instanceManager.channel.invokeMethod(mobile_ads.InitializationStatus, "MobileAds#initialize"));
+      });
+    }
+    updateRequestConfiguration(requestConfiguration) {
+      return ad_instance_manager.instanceManager.updateRequestConfiguration(requestConfiguration);
+    }
+    [_init]() {
+      ad_instance_manager.instanceManager.channel.invokeMethod(dart.dynamic, "_init");
+    }
+  };
+  (mobile_ads.MobileAds.__ = function() {
+    ;
+  }).prototype = mobile_ads.MobileAds.prototype;
+  dart.addTypeTests(mobile_ads.MobileAds);
+  dart.addTypeCaches(mobile_ads.MobileAds);
+  dart.setMethodSignature(mobile_ads.MobileAds, () => ({
+    __proto__: dart.getMethods(mobile_ads.MobileAds.__proto__),
+    initialize: dart.fnType(async.Future$(mobile_ads.InitializationStatus), []),
+    updateRequestConfiguration: dart.fnType(async.Future$(dart.void), [request_configuration.RequestConfiguration]),
+    [_init]: dart.fnType(dart.void, [])
+  }));
+  dart.setLibraryUri(mobile_ads.MobileAds, I[0]);
+  dart.defineLazy(mobile_ads.MobileAds, {
+    /*mobile_ads.MobileAds._instance*/get _instance() {
+      let t0;
+      return t0 = new mobile_ads.MobileAds.__(), (() => {
+        t0[_init]();
+        return t0;
+      })();
+    }
+  }, false);
+  var adapterStatuses$ = dart.privateName(mobile_ads, "InitializationStatus.adapterStatuses");
+  mobile_ads.InitializationStatus = class InitializationStatus extends core.Object {
+    get adapterStatuses() {
+      return this[adapterStatuses$];
+    }
+    set adapterStatuses(value) {
+      super.adapterStatuses = value;
+    }
+  };
+  (mobile_ads.InitializationStatus.new = function(adapterStatuses) {
+    this[adapterStatuses$] = T.MapOfString$AdapterStatus().unmodifiable(adapterStatuses);
+    ;
+  }).prototype = mobile_ads.InitializationStatus.prototype;
+  dart.addTypeTests(mobile_ads.InitializationStatus);
+  dart.addTypeCaches(mobile_ads.InitializationStatus);
+  dart.setLibraryUri(mobile_ads.InitializationStatus, I[0]);
+  dart.setFieldSignature(mobile_ads.InitializationStatus, () => ({
+    __proto__: dart.getFields(mobile_ads.InitializationStatus.__proto__),
+    adapterStatuses: dart.finalFieldType(core.Map$(core.String, mobile_ads.AdapterStatus))
+  }));
+  var state$ = dart.privateName(mobile_ads, "AdapterStatus.state");
+  var description$ = dart.privateName(mobile_ads, "AdapterStatus.description");
+  var latency$ = dart.privateName(mobile_ads, "AdapterStatus.latency");
+  mobile_ads.AdapterStatus = class AdapterStatus extends core.Object {
+    get state() {
+      return this[state$];
+    }
+    set state(value) {
+      super.state = value;
+    }
+    get description() {
+      return this[description$];
+    }
+    set description(value) {
+      super.description = value;
+    }
+    get latency() {
+      return this[latency$];
+    }
+    set latency(value) {
+      super.latency = value;
+    }
+  };
+  (mobile_ads.AdapterStatus.new = function(state, description, latency) {
+    this[state$] = state;
+    this[description$] = description;
+    this[latency$] = latency;
+    ;
+  }).prototype = mobile_ads.AdapterStatus.prototype;
+  dart.addTypeTests(mobile_ads.AdapterStatus);
+  dart.addTypeCaches(mobile_ads.AdapterStatus);
+  dart.setLibraryUri(mobile_ads.AdapterStatus, I[0]);
+  dart.setFieldSignature(mobile_ads.AdapterStatus, () => ({
+    __proto__: dart.getFields(mobile_ads.AdapterStatus.__proto__),
+    state: dart.finalFieldType(mobile_ads.AdapterInitializationState),
+    description: dart.finalFieldType(core.String),
+    latency: dart.finalFieldType(core.double)
+  }));
+  var channel = dart.privateName(ad_instance_manager, "AdInstanceManager.channel");
+  var _nextAdId = dart.privateName(ad_instance_manager, "_nextAdId");
+  var _loadedAds = dart.privateName(ad_instance_manager, "_loadedAds");
+  var _onAdLoadedAds = dart.privateName(ad_instance_manager, "_onAdLoadedAds");
+  var _mountedWidgetAdIds = dart.privateName(ad_instance_manager, "_mountedWidgetAdIds");
+  var _onAdEvent = dart.privateName(ad_instance_manager, "_onAdEvent");
+  ad_instance_manager.AdInstanceManager = class AdInstanceManager extends core.Object {
+    get channel() {
+      return this[channel];
+    }
+    set channel(value) {
+      super.channel = value;
+    }
+    onAdLoadedCalled(ad) {
+      return this[_onAdLoadedAds].contains(ad);
+    }
+    [_onAdEvent](ad, eventName, $arguments) {
+      let t0, t0$, t0$0, t0$1, t0$2, t0$3, t0$4, t0$5, t0$6;
+      switch (eventName) {
+        case "onAdLoaded":
+        {
+          this[_onAdLoadedAds].add(ad);
+          t0 = ad.listener.onAdLoaded;
+          t0 == null ? null : t0(ad);
+          break;
+        }
+        case "onAdFailedToLoad":
+        {
+          t0$ = ad.listener.onAdFailedToLoad;
+          t0$ == null ? null : t0$(ad, ad_containers.LoadAdError.as($arguments[$_get]("loadAdError")));
+          break;
+        }
+        case "onNativeAdClicked":
+        {
+          t0$0 = ad.listener.onNativeAdClicked;
+          t0$0 == null ? null : t0$0(ad_containers.NativeAd.as(ad));
+          break;
+        }
+        case "onNativeAdImpression":
+        {
+          t0$1 = ad.listener.onNativeAdImpression;
+          t0$1 == null ? null : t0$1(ad_containers.NativeAd.as(ad));
+          break;
+        }
+        case "onAdOpened":
+        {
+          t0$2 = ad.listener.onAdOpened;
+          t0$2 == null ? null : t0$2(ad);
+          break;
+        }
+        case "onApplicationExit":
+        {
+          t0$3 = ad.listener.onApplicationExit;
+          t0$3 == null ? null : t0$3(ad);
+          break;
+        }
+        case "onAdClosed":
+        {
+          t0$4 = ad.listener.onAdClosed;
+          t0$4 == null ? null : t0$4(ad);
+          break;
+        }
+        case "onAppEvent":
+        {
+          t0$5 = ad.listener.onAppEvent;
+          t0$5 == null ? null : t0$5(ad, core.String.as($arguments[$_get]("name")), core.String.as($arguments[$_get]("data")));
+          break;
+        }
+        case "onRewardedAdUserEarnedReward":
+        {
+          if (!($arguments[$_get]("rewardItem") != null)) dart.assertFailed(null, I[1], 94, 16, "arguments['rewardItem'] != null");
+          t0$6 = ad.listener.onRewardedAdUserEarnedReward;
+          t0$6 == null ? null : t0$6(ad_containers.RewardedAd.as(ad), ad_containers.RewardItem.as($arguments[$_get]("rewardItem")));
+          break;
+        }
+        default:
+        {
+          print.debugPrint("invalid ad event name: " + eventName);
+        }
+      }
+    }
+    adFor(adId) {
+      return this[_loadedAds]._get(adId);
+    }
+    adIdFor(ad) {
+      return this[_loadedAds].inverse._get(ad);
+    }
+    isWidgetAdIdMounted(adId) {
+      return this[_mountedWidgetAdIds].contains(adId);
+    }
+    mountWidgetAdId(adId) {
+      return this[_mountedWidgetAdIds].add(adId);
+    }
+    unmountWidgetAdId(adId) {
+      return this[_mountedWidgetAdIds].remove(adId);
+    }
+    loadBannerAd(ad) {
+      let t0;
+      if (this.adIdFor(ad) != null) {
+        return T.FutureOfvoid().value();
+      }
+      let adId = (t0 = this[_nextAdId], this[_nextAdId] = t0 + 1, t0);
+      this[_loadedAds]._set(adId, ad);
+      return this.channel.invokeMethod(dart.void, "loadBannerAd", new _js_helper.LinkedMap.from(["adId", adId, "adUnitId", ad.adUnitId, "request", ad.request, "size", ad.size]));
+    }
+    loadInterstitialAd(ad) {
+      let t0;
+      if (this.adIdFor(ad) != null) {
+        return T.FutureOfvoid().value();
+      }
+      let adId = (t0 = this[_nextAdId], this[_nextAdId] = t0 + 1, t0);
+      this[_loadedAds]._set(adId, ad);
+      return this.channel.invokeMethod(dart.void, "loadInterstitialAd", new _js_helper.LinkedMap.from(["adId", adId, "adUnitId", ad.adUnitId, "request", ad.request]));
+    }
+    loadNativeAd(ad) {
+      let t0;
+      if (this.adIdFor(ad) != null) {
+        return T.FutureOfvoid().value();
+      }
+      let adId = (t0 = this[_nextAdId], this[_nextAdId] = t0 + 1, t0);
+      this[_loadedAds]._set(adId, ad);
+      return this.channel.invokeMethod(dart.void, "loadNativeAd", new _js_helper.LinkedMap.from(["adId", adId, "adUnitId", ad.adUnitId, "request", ad.request, "publisherRequest", ad.publisherRequest, "factoryId", ad.factoryId, "customOptions", ad.customOptions]));
+    }
+    loadRewardedAd(ad) {
+      let t0;
+      if (this.adIdFor(ad) != null) {
+        return T.FutureOfvoid().value();
+      }
+      let adId = (t0 = this[_nextAdId], this[_nextAdId] = t0 + 1, t0);
+      this[_loadedAds]._set(adId, ad);
+      return this.channel.invokeMethod(dart.void, "loadRewardedAd", new _js_helper.LinkedMap.from(["adId", adId, "adUnitId", ad.adUnitId, "request", ad.request, "publisherRequest", ad.publisherRequest, "serverSideVerificationOptions", ad.serverSideVerificationOptions]));
+    }
+    loadPublisherBannerAd(ad) {
+      let t0;
+      if (this.adIdFor(ad) != null) {
+        return T.FutureOfvoid().value();
+      }
+      let adId = (t0 = this[_nextAdId], this[_nextAdId] = t0 + 1, t0);
+      this[_loadedAds]._set(adId, ad);
+      return this.channel.invokeMethod(dart.void, "loadPublisherBannerAd", new _js_helper.LinkedMap.from(["adId", adId, "sizes", ad.sizes, "adUnitId", ad.adUnitId, "request", ad.request]));
+    }
+    loadPublisherInterstitialAd(ad) {
+      let t0;
+      if (this.adIdFor(ad) != null) {
+        return T.FutureOfvoid().value();
+      }
+      let adId = (t0 = this[_nextAdId], this[_nextAdId] = t0 + 1, t0);
+      this[_loadedAds]._set(adId, ad);
+      return this.channel.invokeMethod(dart.void, "loadPublisherInterstitialAd", new _js_helper.LinkedMap.from(["adId", adId, "adUnitId", ad.adUnitId, "request", ad.request]));
+    }
+    disposeAd(ad) {
+      this[_onAdLoadedAds].remove(ad);
+      let adId = this.adIdFor(ad);
+      let disposedAd = this[_loadedAds].remove(adId);
+      if (disposedAd == null) {
+        return T.FutureOfvoid().value();
+      }
+      return this.channel.invokeMethod(dart.void, "disposeAd", new _js_helper.LinkedMap.from(["adId", adId]));
+    }
+    showAdWithoutView(ad) {
+      if (!(this.adIdFor(ad) != null)) dart.assertFailed(dart.str(dart.wrapType(ad_containers.Ad)) + " has not been loaded or has already been disposed.", I[1], 267, 7, "adIdFor(ad) != null");
+      return this.channel.invokeMethod(dart.void, "showAdWithoutView", new _js_helper.LinkedMap.from(["adId", this.adIdFor(ad)]));
+    }
+    updateRequestConfiguration(requestConfiguration) {
+      return this.channel.invokeMethod(dart.void, "MobileAds#updateRequestConfiguration", new _js_helper.LinkedMap.from(["maxAdContentRating", requestConfiguration.maxAdContentRating, "tagForChildDirectedTreatment", requestConfiguration.tagForChildDirectedTreatment, "testDeviceIds", requestConfiguration.testDeviceIds, "tagForUnderAgeOfConsent", requestConfiguration.tagForUnderAgeOfConsent]));
+    }
+  };
+  (ad_instance_manager.AdInstanceManager.new = function(channelName) {
+    this[_nextAdId] = 0;
+    this[_loadedAds] = new (T._BiMapOfint$Ad()).new();
+    this[_onAdLoadedAds] = T.LinkedHashSetOfAd().new();
+    this[_mountedWidgetAdIds] = T.LinkedHashSetOfint().new();
+    this[channel] = new platform_channel.MethodChannel.new(channelName, new message_codecs.StandardMethodCodec.new(new ad_instance_manager.AdMessageCodec.new()));
+    this.channel.setMethodCallHandler(dart.fn(call => async.async(core.Null, (function*() {
+      if (!(call.method === "onAdEvent")) dart.assertFailed(null, I[1], 43, 14, "call.method == 'onAdEvent'");
+      let adId = core.int.as(dart.dsend(call.arguments, '_get', ["adId"]));
+      let eventName = core.String.as(dart.dsend(call.arguments, '_get', ["eventName"]));
+      let ad = this.adFor(adId);
+      if (ad != null) {
+        this[_onAdEvent](ad, eventName, core.Map.as(call.arguments));
+      } else {
+        print.debugPrint(dart.str(dart.wrapType(ad_containers.Ad)) + " with id `" + dart.str(adId) + "` is not available for " + eventName + ".");
+      }
+    }).bind(this)), T.MethodCallToFutureOfNull()));
+  }).prototype = ad_instance_manager.AdInstanceManager.prototype;
+  dart.addTypeTests(ad_instance_manager.AdInstanceManager);
+  dart.addTypeCaches(ad_instance_manager.AdInstanceManager);
+  dart.setMethodSignature(ad_instance_manager.AdInstanceManager, () => ({
+    __proto__: dart.getMethods(ad_instance_manager.AdInstanceManager.__proto__),
+    onAdLoadedCalled: dart.fnType(core.bool, [ad_containers.Ad]),
+    [_onAdEvent]: dart.fnType(dart.void, [ad_containers.Ad, core.String, core.Map]),
+    adFor: dart.fnType(dart.nullable(ad_containers.Ad), [core.int]),
+    adIdFor: dart.fnType(dart.nullable(core.int), [ad_containers.Ad]),
+    isWidgetAdIdMounted: dart.fnType(core.bool, [core.int]),
+    mountWidgetAdId: dart.fnType(dart.void, [core.int]),
+    unmountWidgetAdId: dart.fnType(dart.void, [core.int]),
+    loadBannerAd: dart.fnType(async.Future$(dart.void), [ad_containers.BannerAd]),
+    loadInterstitialAd: dart.fnType(async.Future$(dart.void), [ad_containers.InterstitialAd]),
+    loadNativeAd: dart.fnType(async.Future$(dart.void), [ad_containers.NativeAd]),
+    loadRewardedAd: dart.fnType(async.Future$(dart.void), [ad_containers.RewardedAd]),
+    loadPublisherBannerAd: dart.fnType(async.Future$(dart.void), [ad_containers.PublisherBannerAd]),
+    loadPublisherInterstitialAd: dart.fnType(async.Future$(dart.void), [ad_containers.PublisherInterstitialAd]),
+    disposeAd: dart.fnType(async.Future$(dart.void), [ad_containers.Ad]),
+    showAdWithoutView: dart.fnType(async.Future$(dart.void), [ad_containers.AdWithoutView]),
+    updateRequestConfiguration: dart.fnType(async.Future$(dart.void), [request_configuration.RequestConfiguration])
+  }));
+  dart.setLibraryUri(ad_instance_manager.AdInstanceManager, I[2]);
+  dart.setFieldSignature(ad_instance_manager.AdInstanceManager, () => ({
+    __proto__: dart.getFields(ad_instance_manager.AdInstanceManager.__proto__),
+    [_nextAdId]: dart.fieldType(core.int),
+    [_loadedAds]: dart.finalFieldType(ad_instance_manager._BiMap$(core.int, ad_containers.Ad)),
+    [_onAdLoadedAds]: dart.finalFieldType(core.Set$(ad_containers.Ad)),
+    channel: dart.finalFieldType(platform_channel.MethodChannel),
+    [_mountedWidgetAdIds]: dart.finalFieldType(core.Set$(core.int))
+  }));
+  var _tryDeepMapCast = dart.privateName(ad_instance_manager, "_tryDeepMapCast");
+  ad_instance_manager.AdMessageCodec = class AdMessageCodec extends message_codecs.StandardMessageCodec {
+    writeValue(buffer, value) {
+      if (ad_containers.AdSize.is(value)) {
+        buffer.putUint8(128);
+        this.writeValue(buffer, value.width);
+        this.writeValue(buffer, value.height);
+      } else if (ad_containers.AdRequest.is(value)) {
+        buffer.putUint8(129);
+        this.writeValue(buffer, value.keywords);
+        this.writeValue(buffer, value.contentUrl);
+        this.writeValue(buffer, value.testDevices);
+        this.writeValue(buffer, value.nonPersonalizedAds);
+      } else if (ad_containers.RewardItem.is(value)) {
+        buffer.putUint8(132);
+        this.writeValue(buffer, value.amount);
+        this.writeValue(buffer, value.type);
+      } else if (ad_containers.LoadAdError.is(value)) {
+        buffer.putUint8(133);
+        this.writeValue(buffer, value.code);
+        this.writeValue(buffer, value.domain);
+        this.writeValue(buffer, value.message);
+      } else if (ad_containers.PublisherAdRequest.is(value)) {
+        buffer.putUint8(134);
+        this.writeValue(buffer, value.keywords);
+        this.writeValue(buffer, value.contentUrl);
+        this.writeValue(buffer, value.customTargeting);
+        this.writeValue(buffer, value.customTargetingLists);
+        this.writeValue(buffer, value.nonPersonalizedAds);
+      } else if (mobile_ads.AdapterInitializationState.is(value)) {
+        buffer.putUint8(135);
+        this.writeValue(buffer, diagnostics.describeEnum(value));
+      } else if (mobile_ads.AdapterStatus.is(value)) {
+        buffer.putUint8(136);
+        this.writeValue(buffer, value.state);
+        this.writeValue(buffer, value.description);
+        this.writeValue(buffer, value.latency);
+      } else if (mobile_ads.InitializationStatus.is(value)) {
+        buffer.putUint8(137);
+        this.writeValue(buffer, value.adapterStatuses);
+      } else if (ad_containers.ServerSideVerificationOptions.is(value)) {
+        buffer.putUint8(138);
+        this.writeValue(buffer, value.userId);
+        this.writeValue(buffer, value.customData);
+      } else {
+        super.writeValue(buffer, value);
+      }
+    }
+    readValueOfType(type, buffer) {
+      let t0, t0$, t0$0, t0$1;
+      switch (type) {
+        case 128:
+        {
+          return new ad_containers.AdSize.new({width: core.int.as(this.readValueOfType(buffer.getUint8(), buffer)), height: core.int.as(this.readValueOfType(buffer.getUint8(), buffer))});
+        }
+        case 129:
+        {
+          return new ad_containers.AdRequest.new({keywords: T.ListNOfString().as((t0 = this.readValueOfType(buffer.getUint8(), buffer), t0 == null ? null : dart.dgsend(t0, [core.String], 'cast', []))), contentUrl: T.StringN().as(this.readValueOfType(buffer.getUint8(), buffer)), testDevices: T.ListNOfString().as((t0$ = this.readValueOfType(buffer.getUint8(), buffer), t0$ == null ? null : dart.dgsend(t0$, [core.String], 'cast', []))), nonPersonalizedAds: T.boolN().as(this.readValueOfType(buffer.getUint8(), buffer))});
+        }
+        case 132:
+        {
+          return new ad_containers.RewardItem.new(core.num.as(this.readValueOfType(buffer.getUint8(), buffer)), core.String.as(this.readValueOfType(buffer.getUint8(), buffer)));
+        }
+        case 133:
+        {
+          return new ad_containers.LoadAdError.new(core.int.as(this.readValueOfType(buffer.getUint8(), buffer)), core.String.as(this.readValueOfType(buffer.getUint8(), buffer)), core.String.as(this.readValueOfType(buffer.getUint8(), buffer)));
+        }
+        case 134:
+        {
+          return new ad_containers.PublisherAdRequest.new({keywords: T.ListNOfString().as((t0$0 = this.readValueOfType(buffer.getUint8(), buffer), t0$0 == null ? null : dart.dgsend(t0$0, [core.String], 'cast', []))), contentUrl: T.StringN().as(this.readValueOfType(buffer.getUint8(), buffer)), customTargeting: T.MapNOfString$String().as((t0$1 = this.readValueOfType(buffer.getUint8(), buffer), t0$1 == null ? null : dart.dgsend(t0$1, [core.String, core.String], 'cast', []))), customTargetingLists: this[_tryDeepMapCast](core.String, T.MapN().as(this.readValueOfType(buffer.getUint8(), buffer))), nonPersonalizedAds: T.boolN().as(this.readValueOfType(buffer.getUint8(), buffer))});
+        }
+        case 135:
+        {
+          switch (this.readValueOfType(buffer.getUint8(), buffer)) {
+            case "notReady":
+            {
+              return mobile_ads.AdapterInitializationState.notReady;
+            }
+            case "ready":
+            {
+              return mobile_ads.AdapterInitializationState.ready;
+            }
+          }
+          dart.throw(new core.ArgumentError.new());
+        }
+        case 136:
+        {
+          let state = mobile_ads.AdapterInitializationState.as(this.readValueOfType(buffer.getUint8(), buffer));
+          let description = core.String.as(this.readValueOfType(buffer.getUint8(), buffer));
+          let latency = core.double.as(dart.dsend(this.readValueOfType(buffer.getUint8(), buffer), 'toDouble', []));
+          if (platform.defaultTargetPlatform === platform.TargetPlatform.android) {
+            latency = latency / 1000;
+          }
+          return new mobile_ads.AdapterStatus.new(state, description, latency);
+        }
+        case 137:
+        {
+          return new mobile_ads.InitializationStatus.new(T.MapOfString$AdapterStatus().as(dart.dgsend(this.readValueOfType(buffer.getUint8(), buffer), [core.String, mobile_ads.AdapterStatus], 'cast', [])));
+        }
+        case 138:
+        {
+          return new ad_containers.ServerSideVerificationOptions.new({userId: T.StringN().as(this.readValueOfType(buffer.getUint8(), buffer)), customData: T.StringN().as(this.readValueOfType(buffer.getUint8(), buffer))});
+        }
+        default:
+        {
+          return super.readValueOfType(core.int.as(type), buffer);
+        }
+      }
+    }
+    [_tryDeepMapCast](T, map) {
+      if (map == null) return null;
+      return map[$map](core.String, core.List$(T), dart.fn((key, value) => {
+        let t0;
+        return new (core.MapEntry$(core.String, core.List$(T))).__(core.String.as(key), core.List$(T).as((t0 = value, t0 == null ? null : dart.dgsend(t0, [T], 'cast', []))));
+      }, dart.fnType(core.MapEntry$(core.String, core.List$(T)), [dart.dynamic, dart.dynamic])));
+    }
+  };
+  (ad_instance_manager.AdMessageCodec.new = function() {
+    ad_instance_manager.AdMessageCodec.__proto__.new.call(this);
+    ;
+  }).prototype = ad_instance_manager.AdMessageCodec.prototype;
+  dart.addTypeTests(ad_instance_manager.AdMessageCodec);
+  dart.addTypeCaches(ad_instance_manager.AdMessageCodec);
+  dart.setMethodSignature(ad_instance_manager.AdMessageCodec, () => ({
+    __proto__: dart.getMethods(ad_instance_manager.AdMessageCodec.__proto__),
+    writeValue: dart.fnType(dart.void, [serialization.WriteBuffer, dart.dynamic]),
+    readValueOfType: dart.fnType(dart.dynamic, [dart.dynamic, serialization.ReadBuffer]),
+    [_tryDeepMapCast]: dart.gFnType(T => [dart.nullable(core.Map$(core.String, core.List$(T))), [dart.nullable(core.Map)]], T => [dart.nullable(core.Object)])
+  }));
+  dart.setLibraryUri(ad_instance_manager.AdMessageCodec, I[2]);
+  dart.defineLazy(ad_instance_manager.AdMessageCodec, {
+    /*ad_instance_manager.AdMessageCodec._valueAdSize*/get _valueAdSize() {
+      return 128;
+    },
+    /*ad_instance_manager.AdMessageCodec._valueAdRequest*/get _valueAdRequest() {
+      return 129;
+    },
+    /*ad_instance_manager.AdMessageCodec._valueRewardItem*/get _valueRewardItem() {
+      return 132;
+    },
+    /*ad_instance_manager.AdMessageCodec._valueLoadAdError*/get _valueLoadAdError() {
+      return 133;
+    },
+    /*ad_instance_manager.AdMessageCodec._valuePublisherAdRequest*/get _valuePublisherAdRequest() {
+      return 134;
+    },
+    /*ad_instance_manager.AdMessageCodec._valueInitializationState*/get _valueInitializationState() {
+      return 135;
+    },
+    /*ad_instance_manager.AdMessageCodec._valueAdapterStatus*/get _valueAdapterStatus() {
+      return 136;
+    },
+    /*ad_instance_manager.AdMessageCodec._valueInitializationStatus*/get _valueInitializationStatus() {
+      return 137;
+    },
+    /*ad_instance_manager.AdMessageCodec._valueServerSideVerificationOptions*/get _valueServerSideVerificationOptions() {
+      return 138;
+    }
+  }, false);
+  var _map = dart.privateName(ad_instance_manager, "_map");
+  var ___BiMap__inverse = dart.privateName(ad_instance_manager, "_#_BiMap#_inverse");
+  var _inverse = dart.privateName(ad_instance_manager, "_inverse");
+  const _is__BiMap_default = Symbol('_is__BiMap_default');
+  ad_instance_manager._BiMap$ = dart.generic((K, V) => {
+    var LinkedMapOfK$V = () => (LinkedMapOfK$V = dart.constFn(_js_helper.LinkedMap$(K, V)))();
+    var _BiMapOfV$K = () => (_BiMapOfV$K = dart.constFn(ad_instance_manager._BiMap$(V, K)))();
+    class _BiMap extends collection.MapBase$(K, V) {
+      get [_inverse]() {
+        let t0;
+        t0 = this[___BiMap__inverse];
+        return t0 == null ? dart.throw(new _internal.LateError.fieldNI("_inverse")) : t0;
+      }
+      set [_inverse](t0) {
+        this[___BiMap__inverse] = t0;
+      }
+      get inverse() {
+        return this[_inverse];
+      }
+      _get(key) {
+        return this[_map][$_get](key);
+      }
+      _set(key, value$) {
+        let value = value$;
+        K.as(key);
+        V.as(value);
+        if (!!this[_map][$containsKey](key)) dart.assertFailed(null, I[1], 458, 12, "!_map.containsKey(key)");
+        if (!!this.inverse[$containsKey](value)) dart.assertFailed(null, I[1], 459, 12, "!inverse.containsKey(value)");
+        this[_map][$_set](key, value);
+        this.inverse[_map][$_set](value, key);
+        return value$;
+      }
+      clear() {
+        this[_map][$clear]();
+        this.inverse[_map][$clear]();
+      }
+      get keys() {
+        return this[_map][$keys];
+      }
+      remove(key) {
+        if (key == null) return null;
+        let value = this[_map][$_get](key);
+        this.inverse[_map][$remove](value);
+        return this[_map][$remove](key);
+      }
+    }
+    (_BiMap.new = function() {
+      this[_map] = new (LinkedMapOfK$V()).new();
+      this[___BiMap__inverse] = null;
+      this[_inverse] = new (_BiMapOfV$K())._inverse(this);
+    }).prototype = _BiMap.prototype;
+    (_BiMap._inverse = function(_inverse) {
+      this[_map] = new (LinkedMapOfK$V()).new();
+      this[___BiMap__inverse] = null;
+      this[___BiMap__inverse] = _inverse;
+      ;
+    }).prototype = _BiMap.prototype;
+    dart.addTypeTests(_BiMap);
+    _BiMap.prototype[_is__BiMap_default] = true;
+    dart.addTypeCaches(_BiMap);
+    dart.setMethodSignature(_BiMap, () => ({
+      __proto__: dart.getMethods(_BiMap.__proto__),
+      _get: dart.fnType(dart.nullable(V), [dart.nullable(core.Object)]),
+      [$_get]: dart.fnType(dart.nullable(V), [dart.nullable(core.Object)]),
+      _set: dart.fnType(dart.void, [dart.nullable(core.Object), dart.nullable(core.Object)]),
+      [$_set]: dart.fnType(dart.void, [dart.nullable(core.Object), dart.nullable(core.Object)]),
+      clear: dart.fnType(dart.void, []),
+      [$clear]: dart.fnType(dart.void, []),
+      remove: dart.fnType(dart.nullable(V), [dart.nullable(core.Object)]),
+      [$remove]: dart.fnType(dart.nullable(V), [dart.nullable(core.Object)])
+    }));
+    dart.setGetterSignature(_BiMap, () => ({
+      __proto__: dart.getGetters(_BiMap.__proto__),
+      [_inverse]: ad_instance_manager._BiMap$(V, K),
+      inverse: ad_instance_manager._BiMap$(V, K),
+      keys: core.Iterable$(K),
+      [$keys]: core.Iterable$(K)
+    }));
+    dart.setSetterSignature(_BiMap, () => ({
+      __proto__: dart.getSetters(_BiMap.__proto__),
+      [_inverse]: ad_instance_manager._BiMap$(V, K)
+    }));
+    dart.setLibraryUri(_BiMap, I[2]);
+    dart.setFieldSignature(_BiMap, () => ({
+      __proto__: dart.getFields(_BiMap.__proto__),
+      [_map]: dart.finalFieldType(core.Map$(K, V)),
+      [___BiMap__inverse]: dart.fieldType(dart.nullable(ad_instance_manager._BiMap$(V, K)))
+    }));
+    dart.defineExtensionMethods(_BiMap, ['_get', '_set', 'clear', 'remove']);
+    dart.defineExtensionAccessors(_BiMap, ['keys']);
+    return _BiMap;
+  });
+  ad_instance_manager._BiMap = ad_instance_manager._BiMap$();
+  dart.addTypeTests(ad_instance_manager._BiMap, _is__BiMap_default);
+  dart.defineLazy(ad_instance_manager, {
+    /*ad_instance_manager.instanceManager*/get instanceManager() {
+      return new ad_instance_manager.AdInstanceManager.new("plugins.flutter.io/google_mobile_ads");
+    },
+    set instanceManager(_) {}
+  }, false);
+  var code$ = dart.privateName(ad_containers, "LoadAdError.code");
+  var domain$ = dart.privateName(ad_containers, "LoadAdError.domain");
+  var message$ = dart.privateName(ad_containers, "LoadAdError.message");
+  ad_containers.LoadAdError = class LoadAdError extends core.Object {
+    get code() {
+      return this[code$];
+    }
+    set code(value) {
+      super.code = value;
+    }
+    get domain() {
+      return this[domain$];
+    }
+    set domain(value) {
+      super.domain = value;
+    }
+    get message() {
+      return this[message$];
+    }
+    set message(value) {
+      super.message = value;
+    }
+    toString() {
+      return dart.str(this[$runtimeType]) + "(code: " + dart.str(this.code) + ", domain: " + this.domain + ", message: " + this.message + ")";
+    }
+  };
+  (ad_containers.LoadAdError.new = function(code, domain, message) {
+    this[code$] = code;
+    this[domain$] = domain;
+    this[message$] = message;
+    ;
+  }).prototype = ad_containers.LoadAdError.prototype;
+  dart.addTypeTests(ad_containers.LoadAdError);
+  dart.addTypeCaches(ad_containers.LoadAdError);
+  dart.setLibraryUri(ad_containers.LoadAdError, I[3]);
+  dart.setFieldSignature(ad_containers.LoadAdError, () => ({
+    __proto__: dart.getFields(ad_containers.LoadAdError.__proto__),
+    code: dart.finalFieldType(core.int),
+    domain: dart.finalFieldType(core.String),
+    message: dart.finalFieldType(core.String)
+  }));
+  dart.defineExtensionMethods(ad_containers.LoadAdError, ['toString']);
+  var keywords$ = dart.privateName(ad_containers, "AdRequest.keywords");
+  var contentUrl$ = dart.privateName(ad_containers, "AdRequest.contentUrl");
+  var testDevices$ = dart.privateName(ad_containers, "AdRequest.testDevices");
+  var nonPersonalizedAds$ = dart.privateName(ad_containers, "AdRequest.nonPersonalizedAds");
+  ad_containers.AdRequest = class AdRequest extends core.Object {
+    get keywords() {
+      return this[keywords$];
+    }
+    set keywords(value) {
+      super.keywords = value;
+    }
+    get contentUrl() {
+      return this[contentUrl$];
+    }
+    set contentUrl(value) {
+      super.contentUrl = value;
+    }
+    get testDevices() {
+      return this[testDevices$];
+    }
+    set testDevices(value) {
+      super.testDevices = value;
+    }
+    get nonPersonalizedAds() {
+      return this[nonPersonalizedAds$];
+    }
+    set nonPersonalizedAds(value) {
+      super.nonPersonalizedAds = value;
+    }
+    _equals(other) {
+      if (other == null) return false;
+      return ad_containers.AdRequest.is(other) && collections.listEquals(core.String, this.keywords, other.keywords) && this.contentUrl == other.contentUrl && collections.listEquals(core.String, this.testDevices, other.testDevices) && this.nonPersonalizedAds == other.nonPersonalizedAds;
+    }
+  };
+  (ad_containers.AdRequest.new = function(opts) {
+    let keywords = opts && 'keywords' in opts ? opts.keywords : null;
+    let contentUrl = opts && 'contentUrl' in opts ? opts.contentUrl : null;
+    let testDevices = opts && 'testDevices' in opts ? opts.testDevices : null;
+    let nonPersonalizedAds = opts && 'nonPersonalizedAds' in opts ? opts.nonPersonalizedAds : null;
+    this[keywords$] = keywords;
+    this[contentUrl$] = contentUrl;
+    this[testDevices$] = testDevices;
+    this[nonPersonalizedAds$] = nonPersonalizedAds;
+    ;
+  }).prototype = ad_containers.AdRequest.prototype;
+  dart.addTypeTests(ad_containers.AdRequest);
+  dart.addTypeCaches(ad_containers.AdRequest);
+  dart.setLibraryUri(ad_containers.AdRequest, I[3]);
+  dart.setFieldSignature(ad_containers.AdRequest, () => ({
+    __proto__: dart.getFields(ad_containers.AdRequest.__proto__),
+    keywords: dart.finalFieldType(dart.nullable(core.List$(core.String))),
+    contentUrl: dart.finalFieldType(dart.nullable(core.String)),
+    testDevices: dart.finalFieldType(dart.nullable(core.List$(core.String))),
+    nonPersonalizedAds: dart.finalFieldType(dart.nullable(core.bool))
+  }));
+  dart.defineExtensionMethods(ad_containers.AdRequest, ['_equals']);
+  var keywords$0 = dart.privateName(ad_containers, "PublisherAdRequest.keywords");
+  var contentUrl$0 = dart.privateName(ad_containers, "PublisherAdRequest.contentUrl");
+  var customTargeting$ = dart.privateName(ad_containers, "PublisherAdRequest.customTargeting");
+  var customTargetingLists$ = dart.privateName(ad_containers, "PublisherAdRequest.customTargetingLists");
+  var nonPersonalizedAds$0 = dart.privateName(ad_containers, "PublisherAdRequest.nonPersonalizedAds");
+  ad_containers.PublisherAdRequest = class PublisherAdRequest extends core.Object {
+    get keywords() {
+      return this[keywords$0];
+    }
+    set keywords(value) {
+      super.keywords = value;
+    }
+    get contentUrl() {
+      return this[contentUrl$0];
+    }
+    set contentUrl(value) {
+      super.contentUrl = value;
+    }
+    get customTargeting() {
+      return this[customTargeting$];
+    }
+    set customTargeting(value) {
+      super.customTargeting = value;
+    }
+    get customTargetingLists() {
+      return this[customTargetingLists$];
+    }
+    set customTargetingLists(value) {
+      super.customTargetingLists = value;
+    }
+    get nonPersonalizedAds() {
+      return this[nonPersonalizedAds$0];
+    }
+    set nonPersonalizedAds(value) {
+      super.nonPersonalizedAds = value;
+    }
+    _equals(other) {
+      if (other == null) return false;
+      return ad_containers.PublisherAdRequest.is(other) && collections.listEquals(core.String, this.keywords, other.keywords) && this.contentUrl == other.contentUrl && collections.mapEquals(core.String, core.String, this.customTargeting, other.customTargeting) && dart.toString(this.customTargetingLists) === dart.toString(other.customTargetingLists) && this.nonPersonalizedAds == other.nonPersonalizedAds;
+    }
+  };
+  (ad_containers.PublisherAdRequest.new = function(opts) {
+    let keywords = opts && 'keywords' in opts ? opts.keywords : null;
+    let contentUrl = opts && 'contentUrl' in opts ? opts.contentUrl : null;
+    let customTargeting = opts && 'customTargeting' in opts ? opts.customTargeting : null;
+    let customTargetingLists = opts && 'customTargetingLists' in opts ? opts.customTargetingLists : null;
+    let nonPersonalizedAds = opts && 'nonPersonalizedAds' in opts ? opts.nonPersonalizedAds : null;
+    this[keywords$0] = keywords;
+    this[contentUrl$0] = contentUrl;
+    this[customTargeting$] = customTargeting;
+    this[customTargetingLists$] = customTargetingLists;
+    this[nonPersonalizedAds$0] = nonPersonalizedAds;
+    ;
+  }).prototype = ad_containers.PublisherAdRequest.prototype;
+  dart.addTypeTests(ad_containers.PublisherAdRequest);
+  dart.addTypeCaches(ad_containers.PublisherAdRequest);
+  dart.setLibraryUri(ad_containers.PublisherAdRequest, I[3]);
+  dart.setFieldSignature(ad_containers.PublisherAdRequest, () => ({
+    __proto__: dart.getFields(ad_containers.PublisherAdRequest.__proto__),
+    keywords: dart.finalFieldType(dart.nullable(core.List$(core.String))),
+    contentUrl: dart.finalFieldType(dart.nullable(core.String)),
+    customTargeting: dart.finalFieldType(dart.nullable(core.Map$(core.String, core.String))),
+    customTargetingLists: dart.finalFieldType(dart.nullable(core.Map$(core.String, core.List$(core.String)))),
+    nonPersonalizedAds: dart.finalFieldType(dart.nullable(core.bool))
+  }));
+  dart.defineExtensionMethods(ad_containers.PublisherAdRequest, ['_equals']);
+  var height$ = dart.privateName(ad_containers, "AdSize.height");
+  var width$ = dart.privateName(ad_containers, "AdSize.width");
+  ad_containers.AdSize = class AdSize extends core.Object {
+    get height() {
+      return this[height$];
+    }
+    set height(value) {
+      super.height = value;
+    }
+    get width() {
+      return this[width$];
+    }
+    set width(value) {
+      super.width = value;
+    }
+    static getSmartBanner(orientation) {
+      if (platform.defaultTargetPlatform === platform.TargetPlatform.android) {
+        return ad_containers.AdSize.smartBanner;
+      } else if (platform.defaultTargetPlatform === platform.TargetPlatform.iOS && orientation === media_query.Orientation.portrait) {
+        return ad_containers.AdSize.smartBannerPortrait;
+      } else if (platform.defaultTargetPlatform === platform.TargetPlatform.iOS && orientation === media_query.Orientation.landscape) {
+        return ad_containers.AdSize.smartBannerLandscape;
+      }
+      dart.throw(new core.AssertionError.new("Only supported on Android and iOS."));
+    }
+    static get smartBanner() {
+      if (!(platform.defaultTargetPlatform === platform.TargetPlatform.android)) dart.assertFailed(null, I[4], 197, 12, "defaultTargetPlatform == TargetPlatform.android");
+      return new ad_containers.AdSize.new({width: -1, height: -1});
+    }
+    static get smartBannerPortrait() {
+      if (!(platform.defaultTargetPlatform === platform.TargetPlatform.iOS)) dart.assertFailed(null, I[4], 204, 12, "defaultTargetPlatform == TargetPlatform.iOS");
+      return new ad_containers.AdSize.new({width: -1, height: -2});
+    }
+    static get smartBannerLandscape() {
+      if (!(platform.defaultTargetPlatform === platform.TargetPlatform.iOS)) dart.assertFailed(null, I[4], 211, 12, "defaultTargetPlatform == TargetPlatform.iOS");
+      return new ad_containers.AdSize.new({width: -1, height: -3});
+    }
+    _equals(other) {
+      if (other == null) return false;
+      return ad_containers.AdSize.is(other) && this.width === other.width && this.height === other.height;
+    }
+  };
+  (ad_containers.AdSize.new = function(opts) {
+    let width = opts && 'width' in opts ? opts.width : null;
+    let height = opts && 'height' in opts ? opts.height : null;
+    this[width$] = width;
+    this[height$] = height;
+    ;
+  }).prototype = ad_containers.AdSize.prototype;
+  dart.addTypeTests(ad_containers.AdSize);
+  dart.addTypeCaches(ad_containers.AdSize);
+  dart.setLibraryUri(ad_containers.AdSize, I[3]);
+  dart.setFieldSignature(ad_containers.AdSize, () => ({
+    __proto__: dart.getFields(ad_containers.AdSize.__proto__),
+    height: dart.finalFieldType(core.int),
+    width: dart.finalFieldType(core.int)
+  }));
+  dart.defineExtensionMethods(ad_containers.AdSize, ['_equals']);
+  dart.defineLazy(ad_containers.AdSize, {
+    /*ad_containers.AdSize.banner*/get banner() {
+      return C[3] || CT.C3;
+    },
+    /*ad_containers.AdSize.largeBanner*/get largeBanner() {
+      return C[4] || CT.C4;
+    },
+    /*ad_containers.AdSize.mediumRectangle*/get mediumRectangle() {
+      return C[5] || CT.C5;
+    },
+    /*ad_containers.AdSize.fullBanner*/get fullBanner() {
+      return C[6] || CT.C6;
+    },
+    /*ad_containers.AdSize.leaderboard*/get leaderboard() {
+      return C[7] || CT.C7;
+    }
+  }, false);
+  var onAdLoaded$ = dart.privateName(ad_containers, "AdListener.onAdLoaded");
+  var onAdFailedToLoad$ = dart.privateName(ad_containers, "AdListener.onAdFailedToLoad");
+  var onAppEvent$ = dart.privateName(ad_containers, "AdListener.onAppEvent");
+  var onNativeAdClicked$ = dart.privateName(ad_containers, "AdListener.onNativeAdClicked");
+  var onNativeAdImpression$ = dart.privateName(ad_containers, "AdListener.onNativeAdImpression");
+  var onAdOpened$ = dart.privateName(ad_containers, "AdListener.onAdOpened");
+  var onApplicationExit$ = dart.privateName(ad_containers, "AdListener.onApplicationExit");
+  var onAdClosed$ = dart.privateName(ad_containers, "AdListener.onAdClosed");
+  var onRewardedAdUserEarnedReward$ = dart.privateName(ad_containers, "AdListener.onRewardedAdUserEarnedReward");
+  ad_containers.AdListener = class AdListener extends core.Object {
+    get onAdLoaded() {
+      return this[onAdLoaded$];
+    }
+    set onAdLoaded(value) {
+      super.onAdLoaded = value;
+    }
+    get onAdFailedToLoad() {
+      return this[onAdFailedToLoad$];
+    }
+    set onAdFailedToLoad(value) {
+      super.onAdFailedToLoad = value;
+    }
+    get onAppEvent() {
+      return this[onAppEvent$];
+    }
+    set onAppEvent(value) {
+      super.onAppEvent = value;
+    }
+    get onNativeAdClicked() {
+      return this[onNativeAdClicked$];
+    }
+    set onNativeAdClicked(value) {
+      super.onNativeAdClicked = value;
+    }
+    get onNativeAdImpression() {
+      return this[onNativeAdImpression$];
+    }
+    set onNativeAdImpression(value) {
+      super.onNativeAdImpression = value;
+    }
+    get onAdOpened() {
+      return this[onAdOpened$];
+    }
+    set onAdOpened(value) {
+      super.onAdOpened = value;
+    }
+    get onApplicationExit() {
+      return this[onApplicationExit$];
+    }
+    set onApplicationExit(value) {
+      super.onApplicationExit = value;
+    }
+    get onAdClosed() {
+      return this[onAdClosed$];
+    }
+    set onAdClosed(value) {
+      super.onAdClosed = value;
+    }
+    get onRewardedAdUserEarnedReward() {
+      return this[onRewardedAdUserEarnedReward$];
+    }
+    set onRewardedAdUserEarnedReward(value) {
+      super.onRewardedAdUserEarnedReward = value;
+    }
+  };
+  (ad_containers.AdListener.new = function(opts) {
+    let onAdLoaded = opts && 'onAdLoaded' in opts ? opts.onAdLoaded : null;
+    let onAdFailedToLoad = opts && 'onAdFailedToLoad' in opts ? opts.onAdFailedToLoad : null;
+    let onNativeAdClicked = opts && 'onNativeAdClicked' in opts ? opts.onNativeAdClicked : null;
+    let onNativeAdImpression = opts && 'onNativeAdImpression' in opts ? opts.onNativeAdImpression : null;
+    let onAdOpened = opts && 'onAdOpened' in opts ? opts.onAdOpened : null;
+    let onApplicationExit = opts && 'onApplicationExit' in opts ? opts.onApplicationExit : null;
+    let onAdClosed = opts && 'onAdClosed' in opts ? opts.onAdClosed : null;
+    let onRewardedAdUserEarnedReward = opts && 'onRewardedAdUserEarnedReward' in opts ? opts.onRewardedAdUserEarnedReward : null;
+    let onAppEvent = opts && 'onAppEvent' in opts ? opts.onAppEvent : null;
+    this[onAdLoaded$] = onAdLoaded;
+    this[onAdFailedToLoad$] = onAdFailedToLoad;
+    this[onNativeAdClicked$] = onNativeAdClicked;
+    this[onNativeAdImpression$] = onNativeAdImpression;
+    this[onAdOpened$] = onAdOpened;
+    this[onApplicationExit$] = onApplicationExit;
+    this[onAdClosed$] = onAdClosed;
+    this[onRewardedAdUserEarnedReward$] = onRewardedAdUserEarnedReward;
+    this[onAppEvent$] = onAppEvent;
+    ;
+  }).prototype = ad_containers.AdListener.prototype;
+  dart.addTypeTests(ad_containers.AdListener);
+  dart.addTypeCaches(ad_containers.AdListener);
+  dart.setLibraryUri(ad_containers.AdListener, I[3]);
+  dart.setFieldSignature(ad_containers.AdListener, () => ({
+    __proto__: dart.getFields(ad_containers.AdListener.__proto__),
+    onAdLoaded: dart.finalFieldType(dart.nullable(dart.fnType(dart.void, [ad_containers.Ad]))),
+    onAdFailedToLoad: dart.finalFieldType(dart.nullable(dart.fnType(dart.void, [ad_containers.Ad, ad_containers.LoadAdError]))),
+    onAppEvent: dart.finalFieldType(dart.nullable(dart.fnType(dart.void, [ad_containers.Ad, core.String, core.String]))),
+    onNativeAdClicked: dart.finalFieldType(dart.nullable(dart.fnType(dart.void, [ad_containers.NativeAd]))),
+    onNativeAdImpression: dart.finalFieldType(dart.nullable(dart.fnType(dart.void, [ad_containers.NativeAd]))),
+    onAdOpened: dart.finalFieldType(dart.nullable(dart.fnType(dart.void, [ad_containers.Ad]))),
+    onApplicationExit: dart.finalFieldType(dart.nullable(dart.fnType(dart.void, [ad_containers.Ad]))),
+    onAdClosed: dart.finalFieldType(dart.nullable(dart.fnType(dart.void, [ad_containers.Ad]))),
+    onRewardedAdUserEarnedReward: dart.finalFieldType(dart.nullable(dart.fnType(dart.void, [ad_containers.RewardedAd, ad_containers.RewardItem])))
+  }));
+  var listener$ = dart.privateName(ad_containers, "Ad.listener");
+  var adUnitId$ = dart.privateName(ad_containers, "Ad.adUnitId");
+  ad_containers.Ad = class Ad extends core.Object {
+    get listener() {
+      return this[listener$];
+    }
+    set listener(value) {
+      super.listener = value;
+    }
+    get adUnitId() {
+      return this[adUnitId$];
+    }
+    set adUnitId(value) {
+      super.adUnitId = value;
+    }
+    dispose() {
+      return ad_instance_manager.instanceManager.disposeAd(this);
+    }
+    isLoaded() {
+      return async.async(core.bool, (function* isLoaded() {
+        return ad_instance_manager.instanceManager.adIdFor(this) != null && ad_instance_manager.instanceManager.onAdLoadedCalled(this);
+      }).bind(this));
+    }
+  };
+  (ad_containers.Ad.new = function(opts) {
+    let adUnitId = opts && 'adUnitId' in opts ? opts.adUnitId : null;
+    let listener = opts && 'listener' in opts ? opts.listener : null;
+    this[adUnitId$] = adUnitId;
+    this[listener$] = listener;
+    ;
+  }).prototype = ad_containers.Ad.prototype;
+  dart.addTypeTests(ad_containers.Ad);
+  dart.addTypeCaches(ad_containers.Ad);
+  dart.setMethodSignature(ad_containers.Ad, () => ({
+    __proto__: dart.getMethods(ad_containers.Ad.__proto__),
+    dispose: dart.fnType(async.Future$(dart.void), []),
+    isLoaded: dart.fnType(async.Future$(core.bool), [])
+  }));
+  dart.setLibraryUri(ad_containers.Ad, I[3]);
+  dart.setFieldSignature(ad_containers.Ad, () => ({
+    __proto__: dart.getFields(ad_containers.Ad.__proto__),
+    listener: dart.finalFieldType(ad_containers.AdListener),
+    adUnitId: dart.finalFieldType(core.String)
+  }));
+  ad_containers.AdWithView = class AdWithView extends ad_containers.Ad {};
+  (ad_containers.AdWithView.new = function(opts) {
+    let adUnitId = opts && 'adUnitId' in opts ? opts.adUnitId : null;
+    let listener = opts && 'listener' in opts ? opts.listener : null;
+    ad_containers.AdWithView.__proto__.new.call(this, {adUnitId: adUnitId, listener: listener});
+    ;
+  }).prototype = ad_containers.AdWithView.prototype;
+  dart.addTypeTests(ad_containers.AdWithView);
+  dart.addTypeCaches(ad_containers.AdWithView);
+  dart.setLibraryUri(ad_containers.AdWithView, I[3]);
+  ad_containers.AdWithoutView = class AdWithoutView extends ad_containers.Ad {
+    show() {
+      return ad_instance_manager.instanceManager.showAdWithoutView(this);
+    }
+  };
+  (ad_containers.AdWithoutView.new = function(opts) {
+    let adUnitId = opts && 'adUnitId' in opts ? opts.adUnitId : null;
+    let listener = opts && 'listener' in opts ? opts.listener : null;
+    ad_containers.AdWithoutView.__proto__.new.call(this, {adUnitId: adUnitId, listener: listener});
+    ;
+  }).prototype = ad_containers.AdWithoutView.prototype;
+  dart.addTypeTests(ad_containers.AdWithoutView);
+  dart.addTypeCaches(ad_containers.AdWithoutView);
+  dart.setMethodSignature(ad_containers.AdWithoutView, () => ({
+    __proto__: dart.getMethods(ad_containers.AdWithoutView.__proto__),
+    show: dart.fnType(async.Future$(dart.void), [])
+  }));
+  dart.setLibraryUri(ad_containers.AdWithoutView, I[3]);
+  var ad$ = dart.privateName(ad_containers, "AdWidget.ad");
+  ad_containers.AdWidget = class AdWidget extends framework.StatefulWidget {
+    get ad() {
+      return this[ad$];
+    }
+    set ad(value) {
+      super.ad = value;
+    }
+    createState() {
+      return new ad_containers._AdWidgetState.new();
+    }
+  };
+  (ad_containers.AdWidget.new = function(opts) {
+    let key = opts && 'key' in opts ? opts.key : null;
+    let ad = opts && 'ad' in opts ? opts.ad : null;
+    let $36creationLocationd_0dea112b090073317d4 = opts && '$creationLocationd_0dea112b090073317d4' in opts ? opts.$creationLocationd_0dea112b090073317d4 : null;
+    this[ad$] = ad;
+    ad_containers.AdWidget.__proto__.new.call(this, {key: key, $creationLocationd_0dea112b090073317d4: $36creationLocationd_0dea112b090073317d4});
+    ;
+  }).prototype = ad_containers.AdWidget.prototype;
+  dart.addTypeTests(ad_containers.AdWidget);
+  dart.addTypeCaches(ad_containers.AdWidget);
+  dart.setMethodSignature(ad_containers.AdWidget, () => ({
+    __proto__: dart.getMethods(ad_containers.AdWidget.__proto__),
+    createState: dart.fnType(ad_containers._AdWidgetState, [])
+  }));
+  dart.setLibraryUri(ad_containers.AdWidget, I[3]);
+  dart.setFieldSignature(ad_containers.AdWidget, () => ({
+    __proto__: dart.getFields(ad_containers.AdWidget.__proto__),
+    ad: dart.finalFieldType(ad_containers.AdWithView)
+  }));
+  var _adIdAlreadyMounted = dart.privateName(ad_containers, "_adIdAlreadyMounted");
+  var _adLoadNotCalled = dart.privateName(ad_containers, "_adLoadNotCalled");
+  var _Location_parameterLocations = dart.privateName(widget_inspector, "_Location.parameterLocations");
+  var _Location_name = dart.privateName(widget_inspector, "_Location.name");
+  var _Location_column = dart.privateName(widget_inspector, "_Location.column");
+  var _Location_line = dart.privateName(widget_inspector, "_Location.line");
+  var _Location_file = dart.privateName(widget_inspector, "_Location.file");
+  ad_containers._AdWidgetState = class _AdWidgetState extends framework.State$(ad_containers.AdWidget) {
+    initState() {
+      super.initState();
+      let adId = ad_instance_manager.instanceManager.adIdFor(this.widget.ad);
+      if (adId != null) {
+        if (ad_instance_manager.instanceManager.isWidgetAdIdMounted(adId)) {
+          this[_adIdAlreadyMounted] = true;
+        }
+        ad_instance_manager.instanceManager.mountWidgetAdId(adId);
+      } else {
+        this[_adLoadNotCalled] = true;
+      }
+    }
+    dispose() {
+      super.dispose();
+      let adId = ad_instance_manager.instanceManager.adIdFor(this.widget.ad);
+      if (adId != null) {
+        ad_instance_manager.instanceManager.unmountWidgetAdId(adId);
+      }
+    }
+    build(context) {
+      if (this[_adIdAlreadyMounted]) {
+        dart.throw(new assertions.FlutterError.fromParts(T.JSArrayOfDiagnosticsNode().of([new assertions.ErrorSummary.new("This AdWidget is already in the Widget tree"), new assertions.ErrorHint.new("If you placed this AdWidget in a list, make sure you create a new instance " + "in the builder function with a unique ad object."), new assertions.ErrorHint.new("Make sure you are not using the same ad object in more than one AdWidget.")])));
+      }
+      if (this[_adLoadNotCalled]) {
+        dart.throw(new assertions.FlutterError.fromParts(T.JSArrayOfDiagnosticsNode().of([new assertions.ErrorSummary.new("AdWidget requires Ad.load to be called before AdWidget is inserted into the tree"), new assertions.ErrorHint.new("Parameter ad is not loaded. Call Ad.load before AdWidget is inserted into the tree.")])));
+      }
+      if (platform.defaultTargetPlatform === platform.TargetPlatform.android) {
+        return new platform_view.PlatformViewLink.new({viewType: ad_instance_manager.instanceManager.channel.name + "/ad_widget", surfaceFactory: dart.fn((context, controller) => new platform_view.AndroidViewSurface.new({controller: platform_views.AndroidViewController.as(controller), gestureRecognizers: C[8] || CT.C8, hitTestBehavior: platform_view$.PlatformViewHitTestBehavior.opaque, $creationLocationd_0dea112b090073317d4: C[9] || CT.C9}), T.BuildContextAndPlatformViewControllerToAndroidViewSurface()), onCreatePlatformView: dart.fn(params => {
+            let t1;
+            t1 = platform_views.PlatformViewsService.initSurfaceAndroidView({id: params.id, viewType: ad_instance_manager.instanceManager.channel.name + "/ad_widget", layoutDirection: ui.TextDirection.ltr, creationParams: ad_instance_manager.instanceManager.adIdFor(this.widget.ad), creationParamsCodec: new message_codecs.StandardMessageCodec.new()});
+            return (() => {
+              t1.addOnPlatformViewCreatedListener(params.onPlatformViewCreated);
+              t1.create();
+              return t1;
+            })();
+          }, T.PlatformViewCreationParamsToSurfaceAndroidViewController()), $creationLocationd_0dea112b090073317d4: C[14] || CT.C14});
+      }
+      return new platform_view.UiKitView.new({viewType: ad_instance_manager.instanceManager.channel.name + "/ad_widget", creationParams: ad_instance_manager.instanceManager.adIdFor(this.widget.ad), creationParamsCodec: new message_codecs.StandardMessageCodec.new(), $creationLocationd_0dea112b090073317d4: C[19] || CT.C19});
+    }
+  };
+  (ad_containers._AdWidgetState.new = function() {
+    this[_adIdAlreadyMounted] = false;
+    this[_adLoadNotCalled] = false;
+    ad_containers._AdWidgetState.__proto__.new.call(this);
+    ;
+  }).prototype = ad_containers._AdWidgetState.prototype;
+  dart.addTypeTests(ad_containers._AdWidgetState);
+  dart.addTypeCaches(ad_containers._AdWidgetState);
+  dart.setMethodSignature(ad_containers._AdWidgetState, () => ({
+    __proto__: dart.getMethods(ad_containers._AdWidgetState.__proto__),
+    build: dart.fnType(framework.Widget, [framework.BuildContext])
+  }));
+  dart.setLibraryUri(ad_containers._AdWidgetState, I[3]);
+  dart.setFieldSignature(ad_containers._AdWidgetState, () => ({
+    __proto__: dart.getFields(ad_containers._AdWidgetState.__proto__),
+    [_adIdAlreadyMounted]: dart.fieldType(core.bool),
+    [_adLoadNotCalled]: dart.fieldType(core.bool)
+  }));
+  var request$ = dart.privateName(ad_containers, "BannerAd.request");
+  var size$ = dart.privateName(ad_containers, "BannerAd.size");
+  ad_containers.BannerAd = class BannerAd extends ad_containers.AdWithView {
+    get request() {
+      return this[request$];
+    }
+    set request(value) {
+      super.request = value;
+    }
+    get size() {
+      return this[size$];
+    }
+    set size(value) {
+      super.size = value;
+    }
+    load() {
+      return async.async(dart.void, (function* load() {
+        yield ad_instance_manager.instanceManager.loadBannerAd(this);
+      }).bind(this));
+    }
+  };
+  (ad_containers.BannerAd.new = function(opts) {
+    let size = opts && 'size' in opts ? opts.size : null;
+    let adUnitId = opts && 'adUnitId' in opts ? opts.adUnitId : null;
+    let listener = opts && 'listener' in opts ? opts.listener : null;
+    let request = opts && 'request' in opts ? opts.request : null;
+    this[size$] = size;
+    this[request$] = request;
+    ad_containers.BannerAd.__proto__.new.call(this, {adUnitId: adUnitId, listener: listener});
+    ;
+  }).prototype = ad_containers.BannerAd.prototype;
+  dart.addTypeTests(ad_containers.BannerAd);
+  dart.addTypeCaches(ad_containers.BannerAd);
+  dart.setMethodSignature(ad_containers.BannerAd, () => ({
+    __proto__: dart.getMethods(ad_containers.BannerAd.__proto__),
+    load: dart.fnType(async.Future$(dart.void), [])
+  }));
+  dart.setLibraryUri(ad_containers.BannerAd, I[3]);
+  dart.setFieldSignature(ad_containers.BannerAd, () => ({
+    __proto__: dart.getFields(ad_containers.BannerAd.__proto__),
+    request: dart.finalFieldType(ad_containers.AdRequest),
+    size: dart.finalFieldType(ad_containers.AdSize)
+  }));
+  dart.defineLazy(ad_containers.BannerAd, {
+    /*ad_containers.BannerAd.testAdUnitId*/get testAdUnitId() {
+      return io.Platform.isAndroid ? "ca-app-pub-3940256099942544/6300978111" : "ca-app-pub-3940256099942544/2934735716";
+    }
+  }, false);
+  var request$0 = dart.privateName(ad_containers, "PublisherBannerAd.request");
+  var sizes$ = dart.privateName(ad_containers, "PublisherBannerAd.sizes");
+  ad_containers.PublisherBannerAd = class PublisherBannerAd extends ad_containers.AdWithView {
+    get request() {
+      return this[request$0];
+    }
+    set request(value) {
+      super.request = value;
+    }
+    get sizes() {
+      return this[sizes$];
+    }
+    set sizes(value) {
+      super.sizes = value;
+    }
+    load() {
+      return async.async(dart.void, (function* load() {
+        yield ad_instance_manager.instanceManager.loadPublisherBannerAd(this);
+      }).bind(this));
+    }
+  };
+  (ad_containers.PublisherBannerAd.new = function(opts) {
+    let sizes = opts && 'sizes' in opts ? opts.sizes : null;
+    let adUnitId = opts && 'adUnitId' in opts ? opts.adUnitId : null;
+    let listener = opts && 'listener' in opts ? opts.listener : null;
+    let request = opts && 'request' in opts ? opts.request : null;
+    this[sizes$] = sizes;
+    this[request$0] = request;
+    if (!sizes[$isNotEmpty]) dart.assertFailed(null, I[4], 477, 17, "sizes.isNotEmpty");
+    ad_containers.PublisherBannerAd.__proto__.new.call(this, {adUnitId: adUnitId, listener: listener});
+    ;
+  }).prototype = ad_containers.PublisherBannerAd.prototype;
+  dart.addTypeTests(ad_containers.PublisherBannerAd);
+  dart.addTypeCaches(ad_containers.PublisherBannerAd);
+  dart.setMethodSignature(ad_containers.PublisherBannerAd, () => ({
+    __proto__: dart.getMethods(ad_containers.PublisherBannerAd.__proto__),
+    load: dart.fnType(async.Future$(dart.void), [])
+  }));
+  dart.setLibraryUri(ad_containers.PublisherBannerAd, I[3]);
+  dart.setFieldSignature(ad_containers.PublisherBannerAd, () => ({
+    __proto__: dart.getFields(ad_containers.PublisherBannerAd.__proto__),
+    request: dart.finalFieldType(ad_containers.PublisherAdRequest),
+    sizes: dart.finalFieldType(core.List$(ad_containers.AdSize))
+  }));
+  var factoryId$ = dart.privateName(ad_containers, "NativeAd.factoryId");
+  var customOptions$ = dart.privateName(ad_containers, "NativeAd.customOptions");
+  var request$1 = dart.privateName(ad_containers, "NativeAd.request");
+  var publisherRequest$ = dart.privateName(ad_containers, "NativeAd.publisherRequest");
+  ad_containers.NativeAd = class NativeAd extends ad_containers.AdWithView {
+    get factoryId() {
+      return this[factoryId$];
+    }
+    set factoryId(value) {
+      super.factoryId = value;
+    }
+    get customOptions() {
+      return this[customOptions$];
+    }
+    set customOptions(value) {
+      this[customOptions$] = value;
+    }
+    get request() {
+      return this[request$1];
+    }
+    set request(value) {
+      super.request = value;
+    }
+    get publisherRequest() {
+      return this[publisherRequest$];
+    }
+    set publisherRequest(value) {
+      super.publisherRequest = value;
+    }
+    load() {
+      return async.async(dart.void, (function* load() {
+        yield ad_instance_manager.instanceManager.loadNativeAd(this);
+      }).bind(this));
+    }
+  };
+  (ad_containers.NativeAd.new = function(opts) {
+    let adUnitId = opts && 'adUnitId' in opts ? opts.adUnitId : null;
+    let factoryId = opts && 'factoryId' in opts ? opts.factoryId : null;
+    let listener = opts && 'listener' in opts ? opts.listener : null;
+    let request = opts && 'request' in opts ? opts.request : null;
+    let customOptions = opts && 'customOptions' in opts ? opts.customOptions : null;
+    this[factoryId$] = factoryId;
+    this[request$1] = request;
+    this[customOptions$] = customOptions;
+    this[publisherRequest$] = null;
+    if (!(request != null)) dart.assertFailed(null, I[4], 529, 16, "request != null");
+    ad_containers.NativeAd.__proto__.new.call(this, {adUnitId: adUnitId, listener: listener});
+    ;
+  }).prototype = ad_containers.NativeAd.prototype;
+  (ad_containers.NativeAd.fromPublisherRequest = function(opts) {
+    let adUnitId = opts && 'adUnitId' in opts ? opts.adUnitId : null;
+    let factoryId = opts && 'factoryId' in opts ? opts.factoryId : null;
+    let listener = opts && 'listener' in opts ? opts.listener : null;
+    let publisherRequest = opts && 'publisherRequest' in opts ? opts.publisherRequest : null;
+    let customOptions = opts && 'customOptions' in opts ? opts.customOptions : null;
+    this[factoryId$] = factoryId;
+    this[publisherRequest$] = publisherRequest;
+    this[customOptions$] = customOptions;
+    this[request$1] = null;
+    if (!(publisherRequest != null)) dart.assertFailed(null, I[4], 543, 16, "publisherRequest != null");
+    ad_containers.NativeAd.__proto__.new.call(this, {adUnitId: adUnitId, listener: listener});
+    ;
+  }).prototype = ad_containers.NativeAd.prototype;
+  dart.addTypeTests(ad_containers.NativeAd);
+  dart.addTypeCaches(ad_containers.NativeAd);
+  dart.setMethodSignature(ad_containers.NativeAd, () => ({
+    __proto__: dart.getMethods(ad_containers.NativeAd.__proto__),
+    load: dart.fnType(async.Future$(dart.void), [])
+  }));
+  dart.setLibraryUri(ad_containers.NativeAd, I[3]);
+  dart.setFieldSignature(ad_containers.NativeAd, () => ({
+    __proto__: dart.getFields(ad_containers.NativeAd.__proto__),
+    factoryId: dart.finalFieldType(core.String),
+    customOptions: dart.fieldType(dart.nullable(core.Map$(core.String, core.Object))),
+    request: dart.finalFieldType(dart.nullable(ad_containers.AdRequest)),
+    publisherRequest: dart.finalFieldType(dart.nullable(ad_containers.PublisherAdRequest))
+  }));
+  dart.defineLazy(ad_containers.NativeAd, {
+    /*ad_containers.NativeAd.testAdUnitId*/get testAdUnitId() {
+      return io.Platform.isAndroid ? "ca-app-pub-3940256099942544/2247696110" : "ca-app-pub-3940256099942544/3986624511";
+    }
+  }, false);
+  var request$2 = dart.privateName(ad_containers, "InterstitialAd.request");
+  ad_containers.InterstitialAd = class InterstitialAd extends ad_containers.AdWithoutView {
+    get request() {
+      return this[request$2];
+    }
+    set request(value) {
+      super.request = value;
+    }
+    load() {
+      return async.async(dart.void, (function* load() {
+        yield ad_instance_manager.instanceManager.loadInterstitialAd(this);
+      }).bind(this));
+    }
+  };
+  (ad_containers.InterstitialAd.new = function(opts) {
+    let adUnitId = opts && 'adUnitId' in opts ? opts.adUnitId : null;
+    let listener = opts && 'listener' in opts ? opts.listener : null;
+    let request = opts && 'request' in opts ? opts.request : null;
+    this[request$2] = request;
+    ad_containers.InterstitialAd.__proto__.new.call(this, {adUnitId: adUnitId, listener: listener});
+    ;
+  }).prototype = ad_containers.InterstitialAd.prototype;
+  dart.addTypeTests(ad_containers.InterstitialAd);
+  dart.addTypeCaches(ad_containers.InterstitialAd);
+  dart.setMethodSignature(ad_containers.InterstitialAd, () => ({
+    __proto__: dart.getMethods(ad_containers.InterstitialAd.__proto__),
+    load: dart.fnType(async.Future$(dart.void), [])
+  }));
+  dart.setLibraryUri(ad_containers.InterstitialAd, I[3]);
+  dart.setFieldSignature(ad_containers.InterstitialAd, () => ({
+    __proto__: dart.getFields(ad_containers.InterstitialAd.__proto__),
+    request: dart.finalFieldType(ad_containers.AdRequest)
+  }));
+  dart.defineLazy(ad_containers.InterstitialAd, {
+    /*ad_containers.InterstitialAd.testAdUnitId*/get testAdUnitId() {
+      return io.Platform.isAndroid ? "ca-app-pub-3940256099942544/1033173712" : "ca-app-pub-3940256099942544/4411468910";
+    }
+  }, false);
+  var request$3 = dart.privateName(ad_containers, "PublisherInterstitialAd.request");
+  ad_containers.PublisherInterstitialAd = class PublisherInterstitialAd extends ad_containers.AdWithoutView {
+    get request() {
+      return this[request$3];
+    }
+    set request(value) {
+      super.request = value;
+    }
+    load() {
+      return async.async(dart.void, (function* load() {
+        yield ad_instance_manager.instanceManager.loadPublisherInterstitialAd(this);
+      }).bind(this));
+    }
+  };
+  (ad_containers.PublisherInterstitialAd.new = function(opts) {
+    let adUnitId = opts && 'adUnitId' in opts ? opts.adUnitId : null;
+    let listener = opts && 'listener' in opts ? opts.listener : null;
+    let request = opts && 'request' in opts ? opts.request : null;
+    this[request$3] = request;
+    ad_containers.PublisherInterstitialAd.__proto__.new.call(this, {adUnitId: adUnitId, listener: listener});
+    ;
+  }).prototype = ad_containers.PublisherInterstitialAd.prototype;
+  dart.addTypeTests(ad_containers.PublisherInterstitialAd);
+  dart.addTypeCaches(ad_containers.PublisherInterstitialAd);
+  dart.setMethodSignature(ad_containers.PublisherInterstitialAd, () => ({
+    __proto__: dart.getMethods(ad_containers.PublisherInterstitialAd.__proto__),
+    load: dart.fnType(async.Future$(dart.void), [])
+  }));
+  dart.setLibraryUri(ad_containers.PublisherInterstitialAd, I[3]);
+  dart.setFieldSignature(ad_containers.PublisherInterstitialAd, () => ({
+    __proto__: dart.getFields(ad_containers.PublisherInterstitialAd.__proto__),
+    request: dart.finalFieldType(ad_containers.PublisherAdRequest)
+  }));
+  var request$4 = dart.privateName(ad_containers, "RewardedAd.request");
+  var publisherRequest$0 = dart.privateName(ad_containers, "RewardedAd.publisherRequest");
+  var serverSideVerificationOptions$ = dart.privateName(ad_containers, "RewardedAd.serverSideVerificationOptions");
+  ad_containers.RewardedAd = class RewardedAd extends ad_containers.AdWithoutView {
+    get request() {
+      return this[request$4];
+    }
+    set request(value) {
+      super.request = value;
+    }
+    get publisherRequest() {
+      return this[publisherRequest$0];
+    }
+    set publisherRequest(value) {
+      super.publisherRequest = value;
+    }
+    get serverSideVerificationOptions() {
+      return this[serverSideVerificationOptions$];
+    }
+    set serverSideVerificationOptions(value) {
+      super.serverSideVerificationOptions = value;
+    }
+    load() {
+      return async.async(dart.void, (function* load() {
+        yield ad_instance_manager.instanceManager.loadRewardedAd(this);
+      }).bind(this));
+    }
+  };
+  (ad_containers.RewardedAd.new = function(opts) {
+    let adUnitId = opts && 'adUnitId' in opts ? opts.adUnitId : null;
+    let listener = opts && 'listener' in opts ? opts.listener : null;
+    let request = opts && 'request' in opts ? opts.request : null;
+    let serverSideVerificationOptions = opts && 'serverSideVerificationOptions' in opts ? opts.serverSideVerificationOptions : null;
+    this[request$4] = request;
+    this[serverSideVerificationOptions$] = serverSideVerificationOptions;
+    this[publisherRequest$0] = null;
+    ad_containers.RewardedAd.__proto__.new.call(this, {adUnitId: adUnitId, listener: listener});
+    ;
+  }).prototype = ad_containers.RewardedAd.prototype;
+  (ad_containers.RewardedAd.fromPublisherRequest = function(opts) {
+    let adUnitId = opts && 'adUnitId' in opts ? opts.adUnitId : null;
+    let listener = opts && 'listener' in opts ? opts.listener : null;
+    let publisherRequest = opts && 'publisherRequest' in opts ? opts.publisherRequest : null;
+    let serverSideVerificationOptions = opts && 'serverSideVerificationOptions' in opts ? opts.serverSideVerificationOptions : null;
+    this[publisherRequest$0] = publisherRequest;
+    this[serverSideVerificationOptions$] = serverSideVerificationOptions;
+    this[request$4] = null;
+    ad_containers.RewardedAd.__proto__.new.call(this, {adUnitId: adUnitId, listener: listener});
+    ;
+  }).prototype = ad_containers.RewardedAd.prototype;
+  dart.addTypeTests(ad_containers.RewardedAd);
+  dart.addTypeCaches(ad_containers.RewardedAd);
+  dart.setMethodSignature(ad_containers.RewardedAd, () => ({
+    __proto__: dart.getMethods(ad_containers.RewardedAd.__proto__),
+    load: dart.fnType(async.Future$(dart.void), [])
+  }));
+  dart.setLibraryUri(ad_containers.RewardedAd, I[3]);
+  dart.setFieldSignature(ad_containers.RewardedAd, () => ({
+    __proto__: dart.getFields(ad_containers.RewardedAd.__proto__),
+    request: dart.finalFieldType(dart.nullable(ad_containers.AdRequest)),
+    publisherRequest: dart.finalFieldType(dart.nullable(ad_containers.PublisherAdRequest)),
+    serverSideVerificationOptions: dart.finalFieldType(dart.nullable(ad_containers.ServerSideVerificationOptions))
+  }));
+  dart.defineLazy(ad_containers.RewardedAd, {
+    /*ad_containers.RewardedAd.testAdUnitId*/get testAdUnitId() {
+      return io.Platform.isAndroid ? "ca-app-pub-3940256099942544/5224354917" : "ca-app-pub-3940256099942544/1712485313";
+    }
+  }, false);
+  var amount$ = dart.privateName(ad_containers, "RewardItem.amount");
+  var type$ = dart.privateName(ad_containers, "RewardItem.type");
+  ad_containers.RewardItem = class RewardItem extends core.Object {
+    get amount() {
+      return this[amount$];
+    }
+    set amount(value) {
+      super.amount = value;
+    }
+    get type() {
+      return this[type$];
+    }
+    set type(value) {
+      super.type = value;
+    }
+  };
+  (ad_containers.RewardItem.new = function(amount, type) {
+    this[amount$] = amount;
+    this[type$] = type;
+    ;
+  }).prototype = ad_containers.RewardItem.prototype;
+  dart.addTypeTests(ad_containers.RewardItem);
+  dart.addTypeCaches(ad_containers.RewardItem);
+  dart.setLibraryUri(ad_containers.RewardItem, I[3]);
+  dart.setFieldSignature(ad_containers.RewardItem, () => ({
+    __proto__: dart.getFields(ad_containers.RewardItem.__proto__),
+    amount: dart.finalFieldType(core.num),
+    type: dart.finalFieldType(core.String)
+  }));
+  var userId$ = dart.privateName(ad_containers, "ServerSideVerificationOptions.userId");
+  var customData$ = dart.privateName(ad_containers, "ServerSideVerificationOptions.customData");
+  ad_containers.ServerSideVerificationOptions = class ServerSideVerificationOptions extends core.Object {
+    get userId() {
+      return this[userId$];
+    }
+    set userId(value) {
+      super.userId = value;
+    }
+    get customData() {
+      return this[customData$];
+    }
+    set customData(value) {
+      super.customData = value;
+    }
+    _equals(other) {
+      if (other == null) return false;
+      return ad_containers.ServerSideVerificationOptions.is(other) && this.userId == other.userId && this.customData == other.customData;
+    }
+  };
+  (ad_containers.ServerSideVerificationOptions.new = function(opts) {
+    let userId = opts && 'userId' in opts ? opts.userId : null;
+    let customData = opts && 'customData' in opts ? opts.customData : null;
+    this[userId$] = userId;
+    this[customData$] = customData;
+    ;
+  }).prototype = ad_containers.ServerSideVerificationOptions.prototype;
+  dart.addTypeTests(ad_containers.ServerSideVerificationOptions);
+  dart.addTypeCaches(ad_containers.ServerSideVerificationOptions);
+  dart.setLibraryUri(ad_containers.ServerSideVerificationOptions, I[3]);
+  dart.setFieldSignature(ad_containers.ServerSideVerificationOptions, () => ({
+    __proto__: dart.getFields(ad_containers.ServerSideVerificationOptions.__proto__),
+    userId: dart.finalFieldType(dart.nullable(core.String)),
+    customData: dart.finalFieldType(dart.nullable(core.String))
+  }));
+  dart.defineExtensionMethods(ad_containers.ServerSideVerificationOptions, ['_equals']);
+  dart.trackLibraries("packages/google_mobile_ads/src/mobile_ads.dart", {
+    "package:google_mobile_ads/src/mobile_ads.dart": mobile_ads,
+    "package:google_mobile_ads/src/ad_instance_manager.dart": ad_instance_manager,
+    "package:google_mobile_ads/src/ad_containers.dart": ad_containers
+  }, {
+  }, '{"version":3,"sourceRoot":"","sources":["mobile_ads.dart","ad_instance_manager.dart","ad_containers.dart"],"names":[],"mappings":"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","file":"../../../../../../../../packages/google_mobile_ads/src/mobile_ads.dart.lib.js"}');
+  // Exports:
+  return {
+    src__mobile_ads: mobile_ads,
+    src__ad_instance_manager: ad_instance_manager,
+    src__ad_containers: ad_containers
+  };
+}));
+
+//# sourceMappingURL=mobile_ads.dart.lib.js.map

@@ -1,0 +1,4 @@
+io/flutter/plugins/GeneratedPluginRegistrant.java
+ io.flutter.plugins.GeneratedPluginRegistrant
+com/codelab/awesomedrawingquiz/BuildConfig.java
+ com.codelab.awesomedrawingquiz.BuildConfig
